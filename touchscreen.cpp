@@ -86,18 +86,12 @@ void touchScreen::showContent(int contentId)
 
     dataLbl->setPixmap(QPixmap::fromImage(data));
 
-    if(dataLbl->pos()==QPoint(0,0))
-    {
-        dataLbl->resize(data.size());
-        dataLbl->move((width()-data.width())/2,yc-data.height()/2);
-    }
-    else
-    {
-        dataLblAnim->setStartValue(dataLbl->geometry());
-        QRect geo=QRect((width()-data.width())/2,yc-data.height()/2,data.width(),data.height());
-        dataLblAnim->setEndValue(geo);
-        dataLblAnim->start(QAbstractAnimation::KeepWhenStopped);
-    }
+
+    dataLblAnim->setStartValue(dataLbl->geometry());
+    QRect geo=QRect((1080-data.width())/2,yc-data.height()/2,data.width(),data.height());
+    dataLblAnim->setEndValue(geo);
+    dataLblAnim->start(QAbstractAnimation::KeepWhenStopped);
+
      activeContent = contentId;
 }
 
