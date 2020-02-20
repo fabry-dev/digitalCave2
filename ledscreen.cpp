@@ -39,12 +39,12 @@ ledScreen::ledScreen(QLabel *parent, QString PATH) : QLabel(parent),PATH(PATH)
     yb->show();
     connect(this,SIGNAL(yearMoveLeft()),yb,SLOT(moveLeft()));
     connect(this,SIGNAL(yearMoveRight()),yb,SLOT(moveRight()));
-
+/*
     QLabel *touchLbl = new QLabel(this);
     touchLbl->resize(1080*Touch2Led,1920*Touch2Led);
     touchLbl->move((width()-touchLbl->width())/2,(height()-touchLbl->height())/2);
     touchLbl->setStyleSheet("border: 1px solid red");
-    touchLbl->show();
+    touchLbl->show();*/
 
 
 }
