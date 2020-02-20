@@ -100,7 +100,7 @@ void touchScreen::doneShowingContent()
 
     if(activeContent == 5)
     {
-        alphaVp->addMedia(PATH+"2021.mov");
+        alphaVp->addMedia(PATH+"2021.mp4");
         alphaVp->play();
         alphaVp->show();
 
