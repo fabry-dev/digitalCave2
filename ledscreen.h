@@ -18,18 +18,19 @@ public:
 
 private:
     QString PATH;
-    mpvWidget *bgVp;
+    mpvWidget *bgVp,*introVp;
     yearButtons *yb;
 
 private slots:
     void loadPlayer(void);
-    void startVideo(void);
-    void stopVideo(void);
+    void startIntroVideo(void);
+    void stopIntroVideo(void);
 
 signals:
     void bgRestart(void);
     void yearMoveLeft(void);
     void yearMoveRight(void);
+
 
 protected:
      void keyPressEvent(QKeyEvent *ev);

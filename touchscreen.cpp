@@ -15,7 +15,17 @@ touchScreen::touchScreen(QLabel *parent, QString PATH) : QLabel(parent),PATH(PAT
     bgVp->setLoop(false);
     bgVp->show();
 
-    connect(this,SIGNAL(bgShouldRestart()),bgVp,SLOT(rewind()));
+    connect(this,SIGNAL(bgShouldRestart()),bgVp,SLOT(rewindAndPlay()));
+
+
+    introVp = new mpvWidget(this);
+    introVp->resize(size());
+    introVp->setProperty("keep-open","yes");
+    introVp->setLoop(false);
+    introVp->lower();
+    introVp->setMute(true);
+    introVp->show();
+
 
     yb = new yearButtons(this,PATH,yearWidths,yearXs,1440);
     yb->show();
@@ -59,10 +69,29 @@ touchScreen::touchScreen(QLabel *parent, QString PATH) : QLabel(parent),PATH(PAT
 
 void touchScreen::loadPlayer()
 {
-    bgVp->lower();
+
     bgVp->loadFilePaused(PATH+"touchBg2.mp4");
     bgVp->play();
+
+    introVp->loadFilePaused(PATH+"touchIntro2.mp4");
 }
+
+
+void touchScreen::startIntroVideo()
+{
+    introVp->playAndRaise();
+    introVp->raise();
+
+}
+
+void touchScreen::stopIntroVideo()
+{
+    introVp->lower();
+    introVp->pause();
+    introVp->rewind();
+}
+
+
 
 
 

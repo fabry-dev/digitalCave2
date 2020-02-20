@@ -28,7 +28,13 @@ public slots:
     void stopAndHide(void);
     void stop();
     void play();
+    void playAndRaise(void);
     void rewind();
+    void rewindAndPlay(void);
+    void setFileToLoad(QString file);
+    void playPredefinedFile(void);
+    void setMute(bool);
+    void loadPredefinedFile(void);
 
 signals:
     void durationChanged(int value);
@@ -53,6 +59,7 @@ private:
 
     mpv::qt::Handle mpv;
     mpv_opengl_cb_context *mpv_gl;
+    QString filename;
 };
 
 

@@ -23,6 +23,16 @@ ledScreen::ledScreen(QLabel *parent, QString PATH) : QLabel(parent),PATH(PATH)
 
     connect(bgVp,SIGNAL(videoRestart()),this,SIGNAL(bgRestart()));
 
+    introVp = new mpvWidget(this);
+    introVp->resize(size());
+    introVp->setMute(true);
+    introVp->setProperty("keep-open","yes");
+    introVp->setLoop(false);
+    introVp->lower();
+    introVp->show();
+
+
+
     QTimer::singleShot(10,this,SLOT(loadPlayer()));
 
     yb = new yearButtons(this,PATH,ledYearWidths,ledYearXs,height()/2+Touch2Led*480,"_2");
@@ -44,6 +54,9 @@ void ledScreen::loadPlayer()
     bgVp->lower();
     bgVp->loadFilePaused(PATH+"ledBg2.mp4");
     bgVp->play();
+
+    introVp->lower();
+   introVp->loadFilePaused(PATH+"ledIntro2.mp4");
 }
 
 
@@ -51,18 +64,19 @@ void ledScreen::loadPlayer()
 
 
 
-
-
-
-void ledScreen::startVideo(void)
+void ledScreen::startIntroVideo()
 {
+    introVp->playAndRaise();
+    introVp->raise();
+
 }
 
-
-void ledScreen::stopVideo(void)
+void ledScreen::stopIntroVideo()
 {
+    introVp->lower();
+    introVp->pause();
+    introVp->rewind();
 }
-
 
 
 

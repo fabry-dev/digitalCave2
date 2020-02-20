@@ -87,28 +87,39 @@ void mpvWidget::loadFilePaused(QString videoFile)
 
 void mpvWidget::rewind(void)
 {
-    //qDebug()<<"rewind";
+
+    command(QStringList()<< "seek"<<"0"<<"absolute"<<"exact");
+
+}
+
+
+void mpvWidget::rewindAndPlay(void)
+{
+
     command(QStringList()<< "seek"<<"0"<<"absolute"<<"exact");
     setProperty("pause",false);
 }
 
+
 void mpvWidget::stop()
 {
-
     const char *cmd[] = {"stop",NULL, NULL};
-
-
-
 }
+
+
+void mpvWidget::setMute(bool mute)
+{
+
+    setProperty("mute",mute);
+}
+
 
 
 void mpvWidget::stopAndHide(void)
 {
 
 
-    const char *cmd[] = {"pause",NULL, NULL};
-    mpv_command(mpv, cmd);
-
+    setProperty("pause",true);
     command(QStringList()<< "seek"<<"0"<<"absolute"<<"exact");
 
     lower();
@@ -118,9 +129,7 @@ void mpvWidget::stopAndHide(void)
 void mpvWidget::pause(void)
 {
 
-    const char *cmd[] = {"pause",NULL, NULL};
-
-    mpv_command(mpv, cmd);
+     setProperty("pause",true);
 
 
 }
@@ -137,6 +146,15 @@ void mpvWidget::play()
  //raise();
 }
 
+void mpvWidget::playAndRaise()
+{
+    setProperty("pause",false);
+    const char *cmd[] = {"play",NULL, NULL};
+    mpv_command(mpv, cmd);
+    raise();
+    show();
+
+}
 
 void mpvWidget::setLoop(bool looping)
 {
@@ -144,6 +162,33 @@ void mpvWidget::setLoop(bool looping)
         mpv::qt::set_option_variant( mpv, "loop", "inf");
     else
         mpv::qt::set_option_variant( mpv, "loop", "0");
+}
+
+void mpvWidget::setFileToLoad(QString file)
+{
+
+
+    filename = file;
+}
+
+
+
+void mpvWidget::loadPredefinedFile(void)
+{
+    show();
+    raise();
+    loadFilePaused(filename);
+
+}
+
+
+
+void mpvWidget::playPredefinedFile(void)
+{
+
+    loadFile(filename);
+    play();
+    raise();
 }
 
 
@@ -285,3 +330,11 @@ void mpvWidget::mousePressEvent(QMouseEvent *event)
 {
     emit clicked(event->pos());
 }
+
+
+
+
+
+
+
+

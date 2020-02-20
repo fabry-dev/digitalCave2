@@ -20,7 +20,7 @@ public:
 
 private:
     QString PATH;
-    mpvWidget *bgVp;
+    mpvWidget *bgVp,*introVp;
     yearButtons *yb;
     QLabel *dataLbl;
     QPropertyAnimation *dataLblAnim;
@@ -30,6 +30,8 @@ private slots:
     void loadPlayer(void);
     void showContent(int contentId);
     void doneShowingContent(void);
+    void startIntroVideo(void);
+    void stopIntroVideo(void);
 signals:
     void bgShouldRestart(void);
     void yearMoveLeft(void);
