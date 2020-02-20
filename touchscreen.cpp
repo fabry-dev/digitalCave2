@@ -2,7 +2,7 @@
 #include "math.h"
 #include "qdebug.h"
 
-#define TIMEOUT_DELAY 10*1000
+#define TIMEOUT_DELAY 30*1000
 
 std::vector<int> yearWidths={200,200,200,200,200,900,200,200,200,200,200};
 std::vector<int> yearXs={-200,-200,-200,-200,-200,90,1280,1280,1280,1280,1280};
