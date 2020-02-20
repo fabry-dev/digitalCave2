@@ -39,11 +39,11 @@ touchScreen::touchScreen(QLabel *parent, QString PATH) : QLabel(parent),PATH(PAT
     connect(yb,SIGNAL(yearSelected(int)),this,SLOT(showContent(int)));
 
 
-    alphaVp = new alphaVideo(this);
+   /* alphaVp = new alphaVideo(this);
     alphaVp->resize(860,800);
     alphaVp->move((width()-alphaVp->width())/2,(height()-alphaVp->height())/2-100);
     alphaVp->setLoop(true);
-    alphaVp->setAttribute( Qt::WA_TransparentForMouseEvents );
+    alphaVp->setAttribute( Qt::WA_TransparentForMouseEvents );*/
 
 
 
@@ -128,7 +128,7 @@ void touchScreen::showContent(int contentId)
     else
         yc = 520;
 
-    alphaVp->hide();
+   // alphaVp->hide();
 
     dataLbl->setPixmap(QPixmap::fromImage(data));
 
@@ -146,9 +146,9 @@ void touchScreen::doneShowingContent()
 
     if(activeContent == 5)
     {
-        alphaVp->addMedia(PATH+"2021.mp4");
-        alphaVp->play();
-        alphaVp->show();
+     //   alphaVp->addMedia(PATH+"2021.mp4");
+      //  alphaVp->play();
+    //    alphaVp->show();
 
     }
     else

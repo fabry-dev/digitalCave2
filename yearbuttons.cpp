@@ -11,7 +11,7 @@ yearButtons::yearButtons(QWidget *parent,QString PATH,std::vector<int>yearWidths
     resize(parent->size());
     QPixmap bg;
     horizontalPos = 0;//central position
-    for(int i = 0;i<6;i++)
+    for(int i = 0;i<5;i++)
     {
         QLabel *year = new QLabel(this);
         //year->setStyleSheet("border: 1px solid red");
@@ -43,7 +43,7 @@ yearButtons::yearButtons(QWidget *parent,QString PATH,std::vector<int>yearWidths
 
 void yearButtons::moveLeft()
 {
-    if(horizontalPos<=-3)
+    if(horizontalPos<=-2)
         return;
 
     emit movingLeft();
@@ -79,7 +79,7 @@ void yearButtons::reset()
 void yearButtons::animate()
 {
 
-    for(int i = 0;i<6;i++)
+    for(int i = 0;i<anims.size();i++)
     {
 
         anims[i]->setStartValue(years[i]->geometry());
@@ -103,8 +103,28 @@ void yearButtons::animationOver()
 //Detect click hold and release (when using a mouse)
 
 //Mark the picture as clicked
+
+
 void yearButtons::mousePressEvent(QMouseEvent *eventPress)
 {
+
+    int delta = 50;
+
+    if((abs(eventPress->pos().x()-870)<delta)&&(abs(eventPress->pos().y()-1440)<delta))
+    {
+
+        moveRight();
+        return;
+    }
+    else if((abs(eventPress->pos().x()-210)<delta)&&(abs(eventPress->pos().y()-1440)<delta))
+    {
+
+        moveLeft();
+        return;
+    }
+
+
+
     clickPos = eventPress->pos();//store the click position
     clicked = true;
 }
