@@ -25,6 +25,7 @@ private slots:
     void loadPlayer(void);
     void startIntroVideo(void);
     void stopIntroVideo(void);
+    void gotTimeOut(void);
 
 signals:
     void bgRestart(void);

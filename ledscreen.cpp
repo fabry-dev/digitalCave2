@@ -82,7 +82,11 @@ void ledScreen::stopIntroVideo()
 
 
 
+void ledScreen::gotTimeOut()
+{
+    yb->reset();
 
+}
 
 
 

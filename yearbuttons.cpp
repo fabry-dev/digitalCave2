@@ -67,6 +67,15 @@ void yearButtons::moveRight()
 }
 
 
+void yearButtons::reset()
+{
+    horizontalPos=0;
+
+    animate();
+
+}
+
+
 void yearButtons::animate()
 {
 

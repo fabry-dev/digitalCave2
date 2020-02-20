@@ -109,6 +109,8 @@ int main(int argc, char *argv[])
     a.connect(socket,SIGNAL(startVideo()),ls,SLOT(startIntroVideo()));
     a.connect(socket,SIGNAL(stopVideo()),ls,SLOT(stopIntroVideo()));
 
+    a.connect(ts,SIGNAL(timeOut()),ls,SLOT(gotTimeOut()));
+
     return a.exec();
 
 }

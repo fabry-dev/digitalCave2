@@ -22,6 +22,7 @@ public slots:
     void moveLeft(void);
     void moveRight(void);
     void animate(void);
+    void reset(void);
     void animationOver(void);
 
 private:

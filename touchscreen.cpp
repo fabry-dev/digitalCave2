@@ -2,12 +2,17 @@
 #include "math.h"
 #include "qdebug.h"
 
+#define TIMEOUT_DELAY 10*1000
+
 std::vector<int> yearWidths={200,200,200,200,200,900,200,200,200,200,200};
 std::vector<int> yearXs={-200,-200,-200,-200,-200,90,1280,1280,1280,1280,1280};
 
 touchScreen::touchScreen(QLabel *parent, QString PATH) : QLabel(parent),PATH(PATH)
 {
     resize(1080,1920);
+
+    timeOutTimer = new QTimer(this);
+    connect(timeOutTimer,SIGNAL(timeout()),this,SLOT(timeoutReset()));
 
     bgVp = new mpvWidget(this);
     bgVp->resize(size());
@@ -90,7 +95,14 @@ void touchScreen::stopIntroVideo()
     introVp->pause();
     introVp->rewind();
 }
+void touchScreen::timeoutReset()
+{
+    emit timeOut();
+    timeOutTimer->stop();
+    showContent(2);
+    yb->reset();
 
+}
 
 
 
@@ -102,6 +114,11 @@ void touchScreen::showContent(int contentId)
     if(contentId<0)
         return;
 
+
+    if(contentId == activeContent)
+        return;
+
+    timeOutTimer->start(TIMEOUT_DELAY);
 
     QImage data(PATH+"data"+QString::number(contentId)+".png");
 
@@ -121,7 +138,7 @@ void touchScreen::showContent(int contentId)
     dataLblAnim->setEndValue(geo);
     dataLblAnim->start(QAbstractAnimation::KeepWhenStopped);
 
-     activeContent = contentId;
+    activeContent = contentId;
 }
 
 void touchScreen::doneShowingContent()

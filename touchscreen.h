@@ -26,16 +26,20 @@ private:
     QPropertyAnimation *dataLblAnim;
     int activeContent;
     alphaVideo *alphaVp;
+
+    QTimer *timeOutTimer;
 private slots:
     void loadPlayer(void);
     void showContent(int contentId);
     void doneShowingContent(void);
     void startIntroVideo(void);
     void stopIntroVideo(void);
+    void timeoutReset(void);
 signals:
     void bgShouldRestart(void);
     void yearMoveLeft(void);
     void yearMoveRight(void);
+    void timeOut(void);
 };
 
 #endif // MAINSCREEN_H
