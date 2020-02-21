@@ -113,13 +113,13 @@ void yearButtons::mousePressEvent(QMouseEvent *eventPress)
     if((abs(eventPress->pos().x()-870)<delta)&&(abs(eventPress->pos().y()-1440)<delta))
     {
 
-        moveRight();
+        moveLeft();
         return;
     }
     else if((abs(eventPress->pos().x()-210)<delta)&&(abs(eventPress->pos().y()-1440)<delta))
     {
 
-        moveLeft();
+        moveRight();
         return;
     }
 
